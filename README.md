@@ -1,1 +1,0 @@
-# Lemmy RFC
