@@ -8,7 +8,7 @@ Content for both sets of tags would be located in their respective root:
 - Instance Tags: `https://example.org/t/tag`
 - Community Tags: `https://example.org/c/instance/t/tag`
 
-The tag URL can then be utilized as a unique identifier for the tag, populating the `id` field of the tag object. Using the object ID optional tag federation can also be achieved, allowing for communities across multiple instances to share content via tags (example: News tag shared across instances). This would also solve the issue of splintered communities across instances while not forcing it on the communities in question.
+The tag URL can then be utilized as a unique identifier for the tag, populating the `id` field of the tag object. Using the object ID optional tag federation can also be achieved, allowing for communities across multiple instances to share content via tags (example: News tag shared across instances). This would also solve the issue of splintered communities across instances while not forcing it on the communities in question. For now tags will only be applicable to posts, however the general design allows for them to be attached to any kind of object later on, be that instance, community or user. The limited initial scope allows for easier modifications should any rough edges or missing features be discovered.
 
 To fill all needed use cases 3 tag types will be needed:
 
@@ -178,3 +178,15 @@ Moderators should also be able to add tags to user posts.
 
 ### Outlook:
 There have already been several discussions about future expansions, in particular filtering tags has been requested. Given this proposal tag filtering in the feed view should be possible without further changes to the backend.
+
+Addition:
+
+Pre-Selected tags determined by Instance/Community/User settings. Allows for easier handling for cases where a few tags are used very often (example: a news community could pre-select the "News" tag, thereby automatically adding it to every users post creation form)
+
+Addition by [RocketDerp](https://github.com/RocketDerp) (Source: [GitHub Comment](https://github.com/Neshura87/Lemmy-RFC/commit/a11727bb992aa91e89354286876d7144b61b926f#commitcomment-125201367)):
+
+Tagging of Instances, Communitites and Users using the same system.
+
+>There are issues open on Lemmy project to have flares for users, flares for posts. I think community itself being tagged is another thing to consider and could be a means to implement a multi-community (multi-reddit) presentation system for blending communities on a post list. 
+>[...]
+>Perhaps a scope smallint added to the proposed database table... scope 0 = all, 1 = community itself tagged, 2 = post tagged, 3 = user tagged. And community_id specific ones would have to be 2 = post.
