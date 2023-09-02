@@ -87,6 +87,8 @@ I am not quite familiar with the Lemmy Backend so any corrections or additions f
 
 Two new tables for "tags" would be required. One for instance wide tags and one for community tags. These new tables would consist of the columns `url`, `name`, `type`, `deleted`, `ìd` and `community_id` (only on the community tag table). Additional columns for tag display style (for example background & text color) could be added later by extending this table. Splitting the instance and community tags allows the `community_id` field to be non-nullable, making orphaned community tags impossible (Thanks to [0WN463](https://github.com/0WN463) for the [idea](https://github.com/Neshura87/Lemmy-RFC/issues/2)).
 
+Additionally a table for listing the tags on posts would be needed as some Databases (at least Postgres) do not support Foreign Keys in Arrays. Since the tags are split into two tables there would need to be two of these meta tables as well. The tables would consist of two foreign key columns: `tag_id` and `post_id` with `tag_id` being linked to the id column in the respective instance or community tag table and `post_id` being linked to the id column of the post table.
+
 Instance Admins should have the option to delete/ban tags.
 Instances with nsfw disables/blocked could/should auto reject posts with an nsfw type tag.
 
@@ -177,6 +179,20 @@ Deletes the tag associated with the id. Updates `deleted` field in table. Allows
 Returns:
 Object of freshly created tag
 
+
+**Additionally:**
+
+Posts will need to be made editable by moderators, this is currently not possible but will be required to allow mods to fix missing or misused tags on posts.
+Ideally the endpoint that will be opened for this should only allow the addition or removal of tags from a post and nothing else to prevent abuse.
+As such I propose the use of:
+`POST /post/tag` and `POST /post/tag/delete` for these roles. 
+Nesting these endpoints under the `/post` endpoint seems appropriate.
+Shared parameters would be authentication, `post_id` and `tag_id` with an additional `delete` parameter for the delete endpoint.
+
+Groups that should be able to add/edit the tags:
+- Instance Admins of the Community
+- Moderators of the Community
+- Post creator
 
 ### Frontend:
 
