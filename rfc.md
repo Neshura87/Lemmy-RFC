@@ -85,7 +85,7 @@ Example Post json:
 ### Backend:
 I am not quite familiar with the Lemmy Backend so any corrections or additions for this section are appreciated.
 
-A new table "tags" would be required. This new table would consist of the columns `url`, `name`, `type`, `deleted`, `ìd` and `community_id`. Additional columns for tag display style (for example background & text color) could be added later by extending this table. The `community_id` field should be nullable, in which case the tag should be assumed to belong to the instance. This column will be primarily used to help list all tags belonging to the instance or a communtiy for moderation purposes (Adding/Editing/Removing tags).
+Two new tables for "tags" would be required. One for instance wide tags and one for community tags. These new tables would consist of the columns `url`, `name`, `type`, `deleted`, `ìd` and `community_id` (only on the community tag table). Additional columns for tag display style (for example background & text color) could be added later by extending this table. Splitting the instance and community tags allows the `community_id` field to be non-nullable, making orphaned community tags impossible (Thanks to [0WN463](https://github.com/0WN463) for the [idea](https://github.com/Neshura87/Lemmy-RFC/issues/2)).
 
 Instance Admins should have the option to delete/ban tags.
 Instances with nsfw disables/blocked could/should auto reject posts with an nsfw type tag.
