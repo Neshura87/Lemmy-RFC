@@ -228,3 +228,13 @@ Tagging of Instances, Communitites and Users using the same system.
 >There are issues open on Lemmy project to have flares for users, flares for posts. I think community itself being tagged is another thing to consider and could be a means to implement a multi-community (multi-reddit) presentation system for blending communities on a post list. 
 >[...]
 >Perhaps a scope smallint added to the proposed database table... scope 0 = all, 1 = community itself tagged, 2 = post tagged, 3 = user tagged. And community_id specific ones would have to be 2 = post.
+
+Appendage: Best way to solve this is probably just to duplicate the tags code and create another table for user tags/flairs instead of this smallint approach
+
+Addition:
+
+A way for users to create/request tags to make communitites a bit more self governing whilst preserving a moderation aspect on it. I think some form of "Request Tag" option would work well here.
+
+Addition:
+
+Some form of Tag Limit (most likely Front End based) to prevent too many tags on a post. 
