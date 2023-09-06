@@ -6,7 +6,7 @@ Entirely unmoderated tags are not an option for lemmy as the moderation workload
 Content for both sets of tags would be located in their respective root:
 
 - Instance Tags: `https://example.org/t/tag`
-- Community Tags: `https://example.org/c/instance/t/tag`
+- Community Tags: `https://example.org/c/community/t/tag`
 
 The tag URL can then be utilized as a unique identifier for the tag, populating the `id` field of the tag object. Using the object ID optional tag federation can also be achieved, allowing for communities across multiple instances to share content via tags (example: News tag shared across instances). This would also solve the issue of splintered communities across instances while not forcing it on the communities in question. For now tags will only be applicable to posts, however the general design allows for them to be attached to any kind of object later on, be that instance, community or user. The limited initial scope allows for easier modifications should any rough edges or missing features be discovered.
 
